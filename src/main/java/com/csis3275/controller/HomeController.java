@@ -7,11 +7,30 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeController {
 
-    public HomeController() {
+private final ExpenseRespository expenseRepository;
+
+    public HomeController(ExpenseRespository expenseRepository) {
+        this.expenseRepository = expenseRepository;
     }
+
+   
 
     @GetMapping("/homeView")
     public String home(Model model) {
         return "homeView";
+    }
+    
+    @GetMapping("/budget")
+    public String showBudgetPage(Model model) {
+        List<Expense> expenses = expenseRepository.findAll();
+        model.addAttribute("expenses", expenses);
+        model.addAttribute("newExpense", new Expense());
+        return "budget";
+    }
+
+    @PostMapping("/budget/add")
+    public String addExpense(Expense expense) {
+        expenseRepository.save(expense);
+        return "redirect:/budget";
     }
 }
