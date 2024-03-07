@@ -19,7 +19,7 @@ public class HomeController {
 //        this.expenseRepository = expenseRepository;
 //    }
    
-    @GetMapping("/homeView")
+    @GetMapping("/")
     public String home(Model model) {
         return "homeView";
     }
