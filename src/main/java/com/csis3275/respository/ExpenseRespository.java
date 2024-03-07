@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 
 
-public interface ExpenseRespository extends JpaRepository<Expense, Long> {
-
-}
+//public interface ExpenseRespository extends JpaRepository<Expense, Long> {
+//
+//}
