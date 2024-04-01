@@ -28,7 +28,7 @@ public class ServiceDao {
 	 * @throws IllegalArgumentException if username already exists 
 	 * 
 	 */
-	public void registerUser(String username, String password, String email) {
+	public void registerUser(String username, String email, String password) {
 		if (usersRepository.findByUsername(username) != null) {
 			throw new IllegalArgumentException("Username already exists");
 		}
@@ -53,6 +53,7 @@ public class ServiceDao {
 	 * 
 	 */
 	private String hashPassword(String password) {
+		//logger.info("Hashing password " + password);
 		try {
 			MessageDigest md = MessageDigest.getInstance("SHA-256");
 			byte[] hash = md.digest(password.getBytes(StandardCharsets.UTF_8));
@@ -61,6 +62,7 @@ public class ServiceDao {
 			while (hexString.length() < 32) {
 				hexString.insert(0, '0');
 			}
+			//logger.info("password hashed " + hexString.toString());
 			return hexString.toString();
 		} catch (Exception e) {
 
@@ -81,18 +83,18 @@ public class ServiceDao {
 	 *                                  database
 	 */
 	public boolean checkLogin(String username, String password) {
-		logger.info(password);
+		//logger.info(username,password);
 		Users users = usersRepository.findByUsername(username);
 		if (users == null) {
 			throw new IllegalArgumentException("User does not exist");
 		}
 
-		//String hashedPassword = hashPassword(password);
-		// logger.info("Hashed Pass" + hashedPassword);
-		// logger.info("User Password " + users.getPassword());
+		String hashedPassword = hashPassword(password);
+		//  logger.info("Hashed Pass" + hashedPassword);
+		//  logger.info("User Password " + users.getPassword());
 		// logger.info("" + hashedPassword.equals(users.getPassword()));
-		
-		return password.equals(users.getPassword());
+
+		return hashedPassword.equals(users.getPassword());
 	}
 
 	public Users loginUser(String username, String password) {

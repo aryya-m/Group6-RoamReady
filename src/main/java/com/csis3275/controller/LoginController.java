@@ -20,7 +20,7 @@ public class LoginController {
 
 	@PostMapping("/login")
 	public String loginUser(@RequestParam String username, @RequestParam String password, HttpSession session, Model model) {
-
+	//try catch to log user in based 
 		try {
 			Users users = serviceDao.loginUser(username, password);
 			session.setAttribute("user", users); // Store the user in the session
