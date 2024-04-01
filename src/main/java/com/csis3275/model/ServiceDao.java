@@ -3,59 +3,104 @@ package com.csis3275.model;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import com.csis3275.respository.UsersRepository;
+
 @Service
 public class ServiceDao {
-	 private final UsersRepository usersRepository;
+	private final UsersRepository usersRepository;
 
-	 
+	private static final Logger logger = LoggerFactory.getLogger(ServiceDao.class);
 
-	    public ServiceDao(UsersRepository usersRepository) {
-	        this.usersRepository = usersRepository;
-	     	    }
+	public ServiceDao(UsersRepository usersRepository) {
+		this.usersRepository = usersRepository;
+	}
 
-	    public void registerUser(String username, String password, String email) {
-	        if (usersRepository.findByUsername(username) != null) {
-	            throw new IllegalArgumentException("Username already exists");
-	        }
+	/**
+	 * registers user in database checks if username exists
+	 *
+	 * @param username the new users username
+	 * @param password the new users password 
+	 * @param email the new users password 
+	 * @throws IllegalArgumentException if username already exists 
+	 * 
+	 */
+	public void registerUser(String username, String password, String email) {
+		if (usersRepository.findByUsername(username) != null) {
+			throw new IllegalArgumentException("Username already exists");
+		}
 
-	        Users newUser = new Users();
-	        newUser.setUsername(username);
+		Users newUser = new Users();
+		newUser.setUsername(username);
 
-			String hashedPassword = hashPassword(password);
-	        newUser.setPassword(hashedPassword); // Hash the password
+		String hashedPassword = hashPassword(password);
+		newUser.setPassword(hashedPassword); // Hash the password
 
-	        newUser.setEmail(email);
+		newUser.setEmail(email);
 
-	        usersRepository.save(newUser);
-	    }
+		usersRepository.save(newUser);
+	}
 
-		private String hashPassword(String password) {
-        try {
-            MessageDigest md = MessageDigest.getInstance("SHA-256");
-            byte[] hash = md.digest(password.getBytes(StandardCharsets.UTF_8));
-            BigInteger number = new BigInteger(1, hash);
-            StringBuilder hexString = new StringBuilder(number.toString(16));
-            while (hexString.length() < 32) {
-                hexString.insert(0, '0');
-            }
-            return hexString.toString();
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        }
-    }
+	/**
+	 * Hashes a password using the SHA-256 algorithm.
+	 *
+	 * @param password the password to be hashed
+	 * @return the hashed password as a hexadecimal string
+	 * @throws Exception
+	 * 
+	 */
+	private String hashPassword(String password) {
+		try {
+			MessageDigest md = MessageDigest.getInstance("SHA-256");
+			byte[] hash = md.digest(password.getBytes(StandardCharsets.UTF_8));
+			BigInteger number = new BigInteger(1, hash);
+			StringBuilder hexString = new StringBuilder(number.toString(16));
+			while (hexString.length() < 32) {
+				hexString.insert(0, '0');
+			}
+			return hexString.toString();
+		} catch (Exception e) {
 
-	public boolean checkPassword(String username, String password) {
-		Users user = usersRepository.findByUsername(username);
-		if (user == null) {
+			throw new RuntimeException(e);
+
+		}
+	}
+
+	/**
+	 * Checks if the provided username and password match the ones stored in the
+	 * database.
+	 *
+	 * @param username the username of the user trying to log in
+	 * @param password the password provided by the user trying to log in
+	 * @return true if the provided password matches the one stored in the database
+	 *         for the given username, false otherwise
+	 * @throws IllegalArgumentException if the username does not exist in the
+	 *                                  database
+	 */
+	public boolean checkLogin(String username, String password) {
+		logger.info(password);
+		Users users = usersRepository.findByUsername(username);
+		if (users == null) {
 			throw new IllegalArgumentException("User does not exist");
 		}
-	
-		String hashedPassword = hashPassword(password); // Use the same hashPassword method as in registerUser
-	
-		return hashedPassword.equals(user.getPassword());
+
+		//String hashedPassword = hashPassword(password);
+		// logger.info("Hashed Pass" + hashedPassword);
+		// logger.info("User Password " + users.getPassword());
+		// logger.info("" + hashedPassword.equals(users.getPassword()));
+		
+		return password.equals(users.getPassword());
 	}
+
+	public Users loginUser(String username, String password) {
+		if (checkLogin(username, password)) {
+			return usersRepository.findByUsername(username);
+		} else {
+			throw new IllegalArgumentException("Invalid username or password");
+		}
+	}
+
 }

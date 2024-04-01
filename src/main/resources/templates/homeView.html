@@ -79,7 +79,8 @@
                 </div>
                 <div class="flex items-center">
                     <ul class="flex ml-auto space-x-10">
-                        <li><a class="text-white hover:text-gray-200" th:href="@{/login}">Login</a></li>
+                        <li><a class="text-white hover:text-gray-200" th:text="'Welcome, ' + ${user.getUsername()} + '!'"></a></li>
+                        <li><a class="text-white hover:text-gray-200" th:href="@{/login}">Logout</a></li>
                         <li><a class="text-white hover:text-gray-200" href="#">Flight Search</a></li>
                         <li><a class="text-white hover:text-gray-200" href="#">Hotel Search</a></li>
                         <li><a class="text-white hover:text-gray-200" href="#">Experiences</a></li>
