@@ -46,6 +46,7 @@ public class ServiceDao {
 
 	/**
 	 * Hashes a password using the SHA-256 algorithm.
+	 * Hash will always be the same
 	 *
 	 * @param password the password to be hashed
 	 * @return the hashed password as a hexadecimal string
@@ -99,8 +100,10 @@ public class ServiceDao {
 
 	public Users loginUser(String username, String password) {
 		if (checkLogin(username, password)) {
+			logger.info("login successful");
 			return usersRepository.findByUsername(username);
 		} else {
+			logger.info("Invalid username or password");
 			throw new IllegalArgumentException("Invalid username or password");
 		}
 	}

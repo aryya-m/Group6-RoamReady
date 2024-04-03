@@ -34,7 +34,17 @@ public class HomeController {
     
     }
 
+    @GetMapping("/converter")
+    public String currencyConverter()
+    {
+        return "currency";
+    }
 
+    @GetMapping("/emergency")
+    public String emergencyDetails()
+    {
+        return "emergency";
+    }
 
 
 

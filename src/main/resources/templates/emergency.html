@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Assistance</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 p-8">
+    <div class="max-w-md mx-auto bg-white p-8 rounded shadow-md">
+        <h1 class="text-2xl font-bold mb-6">Need Help When Traveling? We've Got You Covered!</h1>
+        <form action="#">
+            <div class="mb-4">
+                <label for="country" class="block text-sm font-medium text-gray-700">Select Country:</label>
+                <select id="country" name="country" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    <option value="" disabled selected>Select Country</option>
+                    <option value="USA">United States</option>
+                    <option value="Mexico">Mexico</option>
+                    <option value="UK">United Kingdom</option>
+                    <option value="France">France</option>
+                    <option value="Italy">Italy</option>
+                    <option value="Spain">Spain</option>
+                    <option value="Germany">Germany</option>
+                    <option value="China">China</option>
+                    <option value="Japan">Japan</option>
+                    <option value="Australia">Australia</option>
+                    <option value="Netherlands">Netherlands</option>
+                    <option value="Cuba">Cuba</option>
+                    <option value="DominicanRepublic">Dominican Republic</option>
+                    <option value="India">India</option>
+                    <option value="Jamaica">Jamaica</option>
+                    <option value="SouthKorea">South Korea</option>
+                    <option value="Thailand">Thailand</option>
+                    <option value="CostaRica">Costa Rica</option>
+                    <option value="Greece">Greece</option>
+                    
+                </select>
+            </div>
+            <div class="mb-6">
+                <button type="submit"
+                    class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Submit</button>
+            </div>
+        </form>
+        <div id="emergency-info" class="hidden">
+           
+        </div>
+    </div>
+
+    <script>
+        const form = document.querySelector('form');
+        const emergencyInfo = document.getElementById('emergency-info');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const country = document.getElementById('country').value;
+            getEmergencyInfo(country);
+        });
+
+        function getEmergencyInfo(country) {
+            let info = '';
+            switch (country) {
+                case 'USA':
+                    info = `
+                        <p class="text-lg font-semibold">Emergency Information for United States:</p>
+                        <p>Street Address: 501 Pennsylvania Avenue, N.W., Washington, D.C., U.S.A., 20001</p>
+                        <p>Telephone: 1-844-880-6519</p>
+                        <p>Fax: (202) 682-7738</p>
+                        <p>Email: ccs.scc@international.gc.ca</p>
+                        <p>Internet: <a href="https://www.Canada.ca/Canada-In-Washington">Canada-In-Washington</a></p>
+                        <p>Twitter: <a href="https://twitter.com/CanEmbUSA">@CanEmbUSA</a></p>
+                        <p>Consular district: Delaware, District of Columbia, Maryland, Virginia and West Virginia.</p>
+                        <p>Local emergency services: 911</p>`;
+                    break;
+                case 'Mexico':
+                    info = `
+                        <p class="text-lg font-semibold">Emergency Information for Mexico:</p>
+                        <p>Street Address: Calle Schiller No. 529, Colonia Polanco, 11580 México, D.F., México</p>
+                        <p>Telephone: +52 55-5724-7900</p>
+                        <p>Fax: +52 55-5724-7943</p>
+                        <p>Email: mxicocs@international.gc.ca</p>
+                        <p>Internet: <a href="https://www.Canada.ca/Canada-And-Mexico">Canada-And-Mexico</a></p>
+                        <p>Facebook: <a href="https://www.facebook.com/Embassy-of-Canada-to-Mexico">Embassy of Canada to Mexico</a></p>
+                        <p>Twitter: <a href="https://twitter.com/CanEmbMexico">@CanEmbMexico</a></p>
+                        <p>Consular district: Various regions in Mexico</p>
+                        <p>Local emergency services: In case of an emergency, dial 911.</p>`;
+                    break;
+                case 'UK':
+                    info = `
+                        <p class="text-lg font-semibold">Emergency Information for United Kingdom:</p>
+                        <p>Street Address: Canada House, Trafalgar Square, London, SW1Y 5BJ, England, United Kingdom</p>
+                        <p>Telephone: +44 (0) 207 004 6000</p>
+                        <p>Fax: +44 (0) 207 004 6053</p>
+                        <p>Email: london.consular@international.gc.ca</p>
+                        <p>Internet: <a href="https://www.Canada.ca/Canada-And-United-Kingdom">Canada-And-United-Kingdom</a></p>
+                        <p>Facebook: <a href="https://www.facebook.com/High-Commission-of-Canada-to-the-United-Kingdom">High Commission of Canada to the United Kingdom</a></p>
+                        <p>Twitter: <a href="https://twitter.com/CanadianUK">@CanadianUK</a></p>
+                        <p>Consular district: The Falkland Islands and Gibraltar.</p>
+                        <p>Local emergency services: Dial 999 for emergency assistance.</p>`;
+                    break;
+                case 'France':
+                    info = `
+                        <p class="text-lg font-semibold">Emergency Information for France:</p>
+                        <p>Street Address: 130, rue du Faubourg Saint-Honoré, 75008 Paris, France</p>
+                        <p>Telephone: +33 (0)1 44 43 29 02</p>
+                        <p>Fax: +33 (0)1 44 43 29 86</p>
+                        <p>Email: paris-consulaire@international.gc.ca</p>
+                        <p>Internet: <a href="https://www.Canada.ca/Canada-And-France">Canada-And-France</a></p>
+                        <p>Facebook: <a href="https://www.facebook.com/Embassy-of-Canada-to-France">Embassy of Canada to France</a></p>
+                        <p>Twitter: <a href="https://twitter.com/CanEmbFrance">@CanEmbFrance</a></p>
+                        <p>Consular district: French Guiana, Guadeloupe, Martinique, Mayotte, Monaco, La Réunion, Saint-Barthélemy, Saint-Martin, Saint-Pierre-et-Miquelon</p>
+                        <p>Local emergency services: Dial 112 for emergency assistance. Dial 17 to connect to the police.</p>`;
+                    break;
+                case 'Italy':
+                    info = `
+                        <p class="text-lg font-semibold">Emergency Information for Italy:</p>
+                        <p>Street Address: Via Zara 30, Rome 00198, Italy (Consular)</p>
+                        <p>Telephone: +39 06-85444-1</p>
+                        <p>Fax: +39 06.440.3048</p>
+                        <p>Email: consul.rome@international.gc.ca</p>
+                        <p>Internet: <a href="https://www.Canada.ca/Canada-And-Italy">Canada-And-Italy</a></p>
+                        <p>Facebook: <a href="https://www.facebook.com/Embassy-of-Canada-to-Italy">Embassy of Canada to Italy</a></p>
+                        <p>Twitter: <a href="https://twitter.com/CanadainItaly">@CanadainItaly</a></p>
+                        <p>Consular district: Albania, Malta, San Marino</p>
+                        <p>Local emergency services: Dial 112 for emergency assistance.</p>`;
+                    break;
+                case 'Spain':
+                    info = `
+                        <p class="text-lg font-semibold">Emergency Information for Spain:</p>
+                        <p>Street Address: Torre Emperador Castellana, Paseo de la Castellana 259D, 28046 Madrid, Spain</p>
+                        <p>Telephone: (34) 91 382 8400</p>
+                        <p>Fax: (34) 91 382 8490</p>
+                        <p>Email: espana.consulaire-consular@international.gc.ca</p>
+                        <p>Internet: <a href="https://www.Canada.ca/Canada-And-Spain">Canada-And-Spain</a></p>
+                        <p>Facebook: <a href="https://www.facebook.com/Embassy-of-Canada-to-Spain">Embassy of Canada to Spain</a></p>
+                        <p>Twitter: <a href="https://twitter.com/EmbCanEspana">@EmbCanEspana</a></p>
+                        <p>Consular district: Spain, Andorra, and Canary Islands</p>
+                        <p>Local emergency services: Dial 112 for emergency assistance. Hotline service to file a police report with a translator is available from 9 a.m. to 9 p.m. on weekdays. Dial 902 102 112.</p>`;
+                    break;
+                case 'Germany':
+                    info = `
+                        <p class="text-lg font-semibold">Emergency Information for Germany:</p>
+                        <p>Street Address: Leipziger Platz 17, 10117 Berlin, Germany</p>
+                        <p>Telephone: 49 (30) 20312 470 / 49 (30) 20312 0</p>
+                        <p>Fax: 49 (30) 20 31 24 57</p>
+                        <p>Email: brlin-cs@international.gc.ca</p>
+                        <p>Internet: <a href="https://www.Canada.ca/Canada-And-Germany">Canada-And-Germany</a></p>
+                        <p>Facebook: <a href="https://www.facebook.com/Embassy-of-Canada-to-Germany">Embassy of Canada to Germany</a></p>
+                        <p>Twitter: <a href="https://twitter.com/CanEmbGermany">@CanEmbGermany</a></p>
+                        <p>Consular district: Various regions in Germany</p>
+                        <p>Local emergency services: In case of emergency, dial police: 110, medical assistance: 112, firefighters: 112</p>`;
+                    break;
+                case 'China':
+                    info = `
+                        <p class="text-lg font-semibold">Emergency Information for China:</p>
+                        <p>Street Address: 19 Dongzhimenwai Dajie, Chaoyang District, 100600 Beijing 100600, China</p>
+                        <p>Telephone: 86 (10) 5139-4000</p>
+                        <p>Fax: 86 (10) 5139-4448</p>
+                        <p>Email: chn.assistance@international.gc.ca</p>
+                        <p>Internet: <a href="https://www.Canada.ca/Canada-And-China">Canada-And-China</a></p>
+                        <p>Twitter: <a href="https://twitter.com/CanadaChina">@CanadaChina</a></p>
+                        <p>Consular district: Various regions in China</p>
+                        <p>Local emergency services: In case of emergency, dial police: 110, medical assistance: 120, firefighters: 119, roadside assistance: 112</p>`;
+                    break;
+                case 'Japan':
+                    info = `
+                        <p class="text-lg font-semibold">Emergency Information for Japan:</p>
+                        <p>Street Address: 3-38 Akasaka 7-chome, Minato-ku, Tokyo, Japan, 107-8503</p>
+                        <p>Telephone: 81 (3) 5412-6200</p>
+                        <p>Fax: 81 (3) 5412-6289</p>
+                        <p>Email: tokyo-consul@international.gc.ca</p>
+                        <p>Internet: <a href="https://www.Canada.ca/Canada-And-Japan">Canada-And-Japan</a></p>
+                        <p>Facebook: <a href="https://www.facebook.com/Embassy-of-Canada-to-Japan">Embassy of Canada to Japan</a></p>
+                        <p>Local emergency services: In case of emergency, dial police: 110, medical assistance: 119, firefighters: 119</p>`;
+                    break;
+                case 'Australia':
+                    info = `
+                        <p class="text-lg font-semibold">Emergency Information for Australia:</p>
+                        <p>Street Address: Commonwealth Avenue, Canberra ACT, Australia 2600</p>
+                        <p>Telephone: (61) 2 6270 4000</p>
+                        <p>Fax: (61) 2 6270 4060</p>
+                        <p>Email: cnbra@international.gc.ca</p>
+                        <p>Internet: <a href="https://www.Canada.ca/Canada-And-Australia">Canada-And-Australia</a></p>
+                        <p>Facebook: <a href="https://www.facebook.com/Canada-in-Australia-194327437308679">Canada in Australia</a></p>
+                        <p>Twitter: <a href="https://twitter.com/canadadownunder">@canadadownunder</a></p>
+                        <p>Consular district: Various regions in Australia</p>
+                        <p>Local emergency services: Dial 000 for emergency assistance.</p>`;
+                    break;
+                case 'Netherlands':
+                    info = `
+                        <p class="text-lg font-semibold">Emergency Information for Netherlands:</p>
+                        <p>Street Address: Sophialaan 7, 2514 JP The Hague, The Netherlands</p>
+                        <p>Telephone: 31 (0) 70 311-1600</p>
+                        <p>Fax: 31 (0) 70 311-1620</p>
+                        <p>Email: nl.consular@international.gc.ca</p>
+                        <p>Internet: <a href="https://www.Canada.ca/Canada-And-Netherlands">Canada-And-Netherlands</a></p>
+                        <p>Facebook: <a href="https://www.facebook.com/Embassy-of-Canada-to-the-Netherlands">Embassy of Canada to the Netherlands</a></p>
+                        <p>Twitter: Ambassador of Canada to the Netherlands: <a href="https://twitter.com/CanAmbNL">@CanAmbNL</a></p>
+                        <p>Local emergency services: Dial 112 for emergency assistance.</p>`;
+                    break;
+                case 'Cuba':
+                    info = `
+                        <p class="text-lg font-semibold">Emergency Information for Cuba:</p>
+                        <p>Street Address: Calle 30, No. 518 esquina a 7ma, Miramar, Havana, 11300, Cuba</p>
+                        <p>Telephone: (53-7) 204-2516/7</p>
+                        <p>Fax: (53-7) 204-2044</p>
+                        <p>Email: havan-cs@international.gc.ca</p>
+                        <p>Internet: <a href="https://www.Canada.ca/Canada-And-Cuba">Canada-And-Cuba</a></p>
+                        <p>Facebook: <a href="https://www.facebook.com/Embassy-of-Canada-to-Cuba">Embassy of Canada to Cuba</a></p>
+                        <p>Twitter: Canada in Cuba</p>
+                        <p>Consular district: Guardalavaca</p>
+                        <p>Local emergency services: In case of emergency, dial police: 106, medical assistance: 104, firefighters: 105</p>`;
+                    break;
+                case 'DominicanRepublic':
+                    info = `
+                        <p class="text-lg font-semibold">Emergency Information for Dominican Republic:</p>
+                        <p>Street Address: Av. Winston Churchill 1099 Torre Citigroup en Acropólis Center, 18th Floor Ensanche Piantini, Santo Domingo, Dominican Republic</p>
+                        <p>Postal Address: P.O. Box 2054, Santo Domingo 1, Dominican Republic</p>
+                        <p>Telephone: (809) 262-3100</p>
+                        <p>Fax: (809) 262-3108/(809) 262-3155</p>
+                        <p>Email: sdmgo.consul@international.gc.ca</p>
+                        <p>Internet: <a href="https://www.Canada.ca/Canada-And-Dominican-Republic">Canada-And-Dominican-Republic</a></p>
+                        <p>Facebook: <a href="https://www.facebook.com/Embassy-of-Canada-to-Dominican-Republic">Embassy of Canada to Dominican Republic</a></p>
+                        <p>Twitter: <a href="https://twitter.com/EmbCanRD">@EmbCanRD</a></p>
+                        <p>Local emergency services: In case of emergency, dial 911.</p>`;
+                    break;
+                case 'India':
+                    info = `
+                        <p class="text-lg font-semibold">Emergency Information for India:</p>
+                        <p>Street Address: 7/8 Shantipath, Chanakyapuri, New Delhi 110 021, India</p>
+                        <p>Telephone: +91 11 4178 2000</p>
+                        <p>Fax: +91 11 4178 2023</p>
+                        <p>Email: india.consular@international.gc.ca</p>
+                        <p>Internet: <a href="https://www.Canada.ca/Canada-And-India">Canada-And-India</a></p>
+                        <p>Facebook: <a href="https://www.facebook.com/High-Commission-of-Canada-in-India-Haut-Commissariat-du-Canada-en-Inde-457848607677688">High Commission of Canada in India</a></p>
+                        <p>Twitter: <a href="https://twitter.com/CanadainIndia">@CanadainIndia</a></p>
+                        <p>Local emergency services: Dial 112 for emergency assistance.</p>`;
+                    break;
+                case 'Jamaica':
+                    info = `
+                        <p class="text-lg font-semibold">Emergency Information for Jamaica:</p>
+                        <p>Street Address: 3 West Kings House Road, Kingston 10, Jamaica</p>
+                        <p>Telephone: (876) 926-1500</p>
+                        <p>Fax: (876) 733-3493</p>
+                        <p>Email: kingston.consular@international.gc.ca</p>
+                        <p>Internet: <a href="https://www.Canada.ca/Canada-And-Jamaica">Canada-And-Jamaica</a></p>
+                        <p>Facebook: <a href="https://www.facebook.com/canadainjamaica">High Commission of Canada in Jamaica</a></p>
+                        <p>Twitter: <a href="https://twitter.com/CanHCJamaica">@CanHCJamaica</a></p>
+                        <p>Local emergency services: Dial 119 for emergency assistance.</p>`;
+                    break;
+                case 'SouthKorea':
+                    info = `
+                        <p class="text-lg font-semibold">Emergency Information for South Korea:</p>
+                        <p>Street Address: 21, Jeongdong-gil (Jeong-dong), Jung-gu, Seoul, 04518, South Korea</p>
+                        <p>Telephone: +82 (2) 3783-6000</p>
+                        <p>Fax: +82 (2) 3783-6131</p>
+                        <p>Email: seoul.consular@international.gc.ca</p>
+                        <p>Internet: <a href="https://www.Canada.ca/Canada-And-South-Korea">Canada-And-South-Korea</a></p>
+                        <p>Facebook: <a href="https://www.facebook.com/CanEmbKorea">Embassy of Canada to South Korea</a></p>
+                        <p>Twitter: <a href="https://twitter.com/CanEmbKorea">@CanEmbKorea</a></p>
+                        <p>Local emergency services: Dial 112 for emergency assistance.</p>`;
+                    break;
+                case 'Thailand':
+                    info = `
+                        <p class="text-lg font-semibold">Emergency Information for Thailand:</p>
+                        <p>Street Address: 15th Floor, Abdulrahim Place, 990 Rama IV, Bangkok 10500, Thailand</p>
+                        <p>Telephone: +66 (0) 2646 4300</p>
+                        <p>Fax: +66 (0) 2646 4336</p>
+                        <p>Email: bngkk-cs@international.gc.ca</p>
+                        <p>Internet: <a href="https://www.Canada.ca/Canada-And-Thailand">Canada-And-Thailand</a></p>
+                        <p>Facebook: <a href="https://www.facebook.com/CanadaThailand">Canada in Thailand</a></p>
+                        <p>Twitter: <a href="https://twitter.com/CanadaThailand">@CanadaThailand</a></p>
+                        <p>Local emergency services: In case of emergency, dial police: 191, medical assistance: 1669, fire department: 199</p>`;
+                    break;
+                case 'CostaRica':
+                    info = `
+                        <p class="text-lg font-semibold">Emergency Information for Costa Rica:</p>
+                        <p>Street Address: Sabana Sur, Contiguo a Contraloría de la República, San José, Costa Rica</p>
+                        <p>Telephone: (506) 2242-4400</p>
+                        <p>Fax: (506) 2231-9164</p>
+                        <p>Email: sjcra@international.gc.ca</p>
+                        <p>Internet: <a href="https://www.Canada.ca/Canada-And-Costa-Rica">Canada-And-Costa-Rica</a></p>
+                        <p>Facebook: <a href="https://www.facebook.com/CanadaCostaRica">Embassy of Canada to Costa Rica</a></p>
+                        <p>Twitter: <a href="https://twitter.com/CanAmbCR">@CanAmbCR</a></p>
+                        <p>Local emergency services: In case of emergency, dial 911.</p>`;
+                    break;
+                case 'Greece':
+                    info = `
+                        <p class="text-lg font-semibold">Emergency Information for Greece:</p>
+                        <p>Street Address: 48 Ethnikis Antistaseos St., Chalandri, 152 31 Athens, Greece</p>
+                        <p>Telephone: +30 210 7273400</p>
+                        <p>Fax: +30 210 7273480</p>
+                        <p>Email: athns-cs@international.gc.ca</p>
+                        <p>Internet: <a href="https://www.Canada.ca/Canada-And-Greece">Canada-And-Greece</a></p>
+                        <p>Facebook: <a href="https://www.facebook.com/CanadainGreece">Embassy of Canada to Greece</a></p>
+                        <p>Twitter: <a href="https://twitter.com/CanEmbGreece">@CanEmbGreece</a></p>
+                        <p>Consular district: Greece and Cyprus</p>
+                        <p>Local emergency services: Dial 112 for emergency assistance.</p>`;
+                    break;
+                
+                default:
+                    info = `<p class="text-lg font-semibold">Emergency Information: Information not available for the selected country.</p>`;
+            }
+            emergencyInfo.innerHTML = info;
+            emergencyInfo.classList.remove('hidden');
+        }
+    </script>
+</body>
+
+</html>

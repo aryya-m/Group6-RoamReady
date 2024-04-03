@@ -82,9 +82,9 @@
                         <li><a class="text-white hover:text-gray-200" th:text="'Welcome, ' + ${user.getUsername()} + '!'"></a></li>
                         <li><a class="text-white hover:text-gray-200" th:href="@{/logout}">Logout</a></li>
                         <li><a class="text-white hover:text-gray-200" href="#">Flight Search</a></li>
-                        <li><a class="text-white hover:text-gray-200" href="#">Hotel Search</a></li>
+                        <li><a class="text-white hover:text-gray-200" th:href="@{/emergency}">Emergency!</a></li>
                         <li><a class="text-white hover:text-gray-200" href="#">Experiences</a></li>
-                        <li><a class="text-white hover:text-gray-200" href="#">Currency Converter</a></li>
+                        <li><a class="text-white hover:text-gray-200" th:href="@{/converter}">Currency Converter</a></li>
                     </ul>
                     <form class="hidden md:flex items-center ml-6">
                         <input class="bg-white appearance-none border-2 border-gray-200 rounded-lg w-64 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
