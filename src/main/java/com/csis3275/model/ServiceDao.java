@@ -23,9 +23,9 @@ public class ServiceDao {
 	 * registers user in database checks if username exists
 	 *
 	 * @param username the new users username
-	 * @param password the new users password 
-	 * @param email the new users password 
-	 * @throws IllegalArgumentException if username already exists 
+	 * @param password the new users password
+	 * @param email    the new users password
+	 * @throws IllegalArgumentException if username already exists
 	 * 
 	 */
 	public void registerUser(String username, String email, String password) {
@@ -54,21 +54,19 @@ public class ServiceDao {
 	 * 
 	 */
 	private String hashPassword(String password) {
-		//logger.info("Hashing password " + password);
+		// logger.info("Hashing password " + password);
 		try {
 			MessageDigest md = MessageDigest.getInstance("SHA-256");
 			byte[] hash = md.digest(password.getBytes(StandardCharsets.UTF_8));
-			BigInteger number = new BigInteger(1, hash);
-			StringBuilder hexString = new StringBuilder(number.toString(16));
+			BigInteger num = new BigInteger(1, hash);
+			StringBuilder hexString = new StringBuilder(num.toString(16));
 			while (hexString.length() < 32) {
 				hexString.insert(0, '0');
 			}
-			//logger.info("password hashed " + hexString.toString());
+			// logger.info("password hashed " + hexString.toString());
 			return hexString.toString();
 		} catch (Exception e) {
-
 			throw new RuntimeException(e);
-
 		}
 	}
 
@@ -84,20 +82,28 @@ public class ServiceDao {
 	 *                                  database
 	 */
 	public boolean checkLogin(String username, String password) {
-		//logger.info(username,password);
+		// logger.info(username,password);
 		Users users = usersRepository.findByUsername(username);
 		if (users == null) {
 			throw new IllegalArgumentException("User does not exist");
 		}
 
 		String hashedPassword = hashPassword(password);
-		//  logger.info("Hashed Pass" + hashedPassword);
-		//  logger.info("User Password " + users.getPassword());
+		// logger.info("Hashed Pass" + hashedPassword);
+		// logger.info("User Password " + users.getPassword());
 		// logger.info("" + hashedPassword.equals(users.getPassword()));
 
 		return hashedPassword.equals(users.getPassword());
 	}
 
+	/**
+	 * Authenticates a user given the username and password.
+	 *
+	 * @param username the username of the user
+	 * @param password the password of the user
+	 * @return the authenticated users object if the login is successful
+	 * @throws IllegalArgumentException if the username or password is invalid
+	 */
 	public Users loginUser(String username, String password) {
 		if (checkLogin(username, password)) {
 			logger.info("login successful");

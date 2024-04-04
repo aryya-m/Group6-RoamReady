@@ -5,6 +5,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+/**
+ * Represents a user in the system.
+ * 
+ * This entity is mapped to a "users" table in the database, where each row represents a user.
+ * Each user has an id, username, password, and email.
+ */
 @Entity
 public class Users {
 @Id

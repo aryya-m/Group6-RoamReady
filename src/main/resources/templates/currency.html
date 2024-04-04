@@ -8,10 +8,10 @@
 
     <title>Roam Ready Currency Converter</title>
 
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Lobster&family=Pacifico&display=swap" rel="stylesheet">
-
     <style>
         body {
             background-color: #f3f4f6;
@@ -91,9 +91,25 @@
             }
         }
     </style>
+
+<script >
+    tailwind.config.js
+module.exports = {
+// ...
+plugins: [
+  // ...
+  require('@tailwindcss/forms'),
+],
+}
+</script>
+
 </head>
 
 <body>
+
+    <div>   <p class="mt-10 text-center text-sm text-gray-500">
+        <a th:href="@{/}" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Take me home!</a>
+      </p></div>
 
     <!-- Roam Ready Currency Converter -->
     <h1 class="heading text-center">Roam Ready Currency Converter</h1>

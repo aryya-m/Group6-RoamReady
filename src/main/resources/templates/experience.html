@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Experiences</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script >
+        tailwind.config.js
+  module.exports = {
+    // ...
+    plugins: [
+      // ...
+      require('@tailwindcss/forms'),
+    ],
+  }
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .card {
+            width: 300px;
+            margin: 20px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .card h3 {
+            margin-top: 10px;
+            font-size: 20px;
+            color: #333;
+        }
+        .card p {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #666;
+        }
+        .card a {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            text-decoration: none;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .card a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    
+<div>   <p class="mt-10 text-center text-sm text-gray-500">
+    <a th:href="@{/}" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Take me home!</a>
+  </p></div>
+  
+
+    <div class="container">
+        
+        <!-- Flex cards for travel experiences -->
+        <div class="card">
+            <img th:src="@{/bungee_jumping.jpg}" alt="Bungee Jumping in Thailand">
+            <h3>Bungee Jumping in Thailand</h3>
+            <p>Experience the ultimate adrenaline rush as you plunge from a towering cliff into the lush jungles of Thailand. Feel the thrill of freefalling before bouncing back up, surrounded by breathtaking natural scenery.</p>
+            <a href="https://www.klook.com/experiences/list/thailand-bungee-jumping/g4-cate173/">Book Now</a>
+        </div>
+        <div class="card">
+            <img th:src="@{/safari.jpg}" alt="Safari in Africa">
+            <h3>Safari in Africa</h3>
+            <p>Embark on an unforgettable journey through the wild savannahs of Africa. Witness majestic lions, elegant giraffes, and powerful elephants in their natural habitat, as you traverse vast plains and dense forests.</p>
+            <a href="https://www.go2africa.com/tours-safaris">Book Now</a>
+        </div>
+        <div class="card">
+            <img th:src="@{/skydiving.jpg}" alt="Skydiving in Dubai">
+            <h3>Skydiving in Dubai</h3>
+            <p>Feel the rush of adrenaline as you leap from a plane high above the stunning skyline of Dubai. Experience the breathtaking views of iconic landmarks such as the Burj Khalifa and Palm Jumeirah as you freefall through the clouds.</p>
+            <a href="https://www.skydivedubai.ae/">Book Now</a>
+        </div>
+        <div class="card">
+            <img th:src="@{/northern_lights.jpg}" alt="Northern Lights in Iceland">
+            <h3>Northern Lights in Iceland</h3>
+            <p>Be enchanted by the mesmerizing dance of the Northern Lights illuminating the night sky in Iceland. Witness vibrant hues of green, purple, and blue swirling above snow-covered landscapes, creating a magical spectacle unlike any other.</p>
+            <a href="https://guidetoiceland.is/the-northern-lights/how-to-find-the-northern-lights-in-iceland">Book Now</a>
+        </div>
+        <div class="card">
+            <img th:src="@{/mountaineering.jpg}" alt="Mountaineering in Himalayas">
+            <h3>Mountaineering in Himalayas</h3>
+            <p>Embark on an epic adventure to conquer the towering peaks of the Himalayas. Trek through rugged terrain, navigate icy slopes, and summit majestic summits, as you push your limits and experience the thrill of reaching new heights.</p>
+            <a href="https://www.adventureconsultants.com/expeditions/himalayan-climbs/">Book Now</a>
+        </div>
+        <div class="card">
+            <img th:src="@{/scuba_diving.jpg}" alt="Scuba Diving in Great Barrier Reef">
+            <h3>Scuba Diving in Great Barrier Reef</h3>
+            <p>Explore the vibrant underwater world of the Great Barrier Reef with an exhilarating scuba diving adventure. Dive among colorful coral reefs, encounter a diverse array of marine life, and immerse yourself in the beauty of this UNESCO World Heritage Site.</p>
+            <a href="https://www.bluewaterdivetravel.com/great-barrier-reef-diving">Book Now</a>
+        </div>
+        <div class="card">
+            <img th:src="@{/paragliding.jpg}" alt="Paragliding in Switzerland">
+            <h3>Paragliding in Switzerland</h3>
+            <p>Soar through the pristine alpine landscapes of Switzerland with an adrenaline-pumping paragliding experience. Glide effortlessly through the sky, marveling at breathtaking mountain vistas and picturesque villages below, for an unforgettable adventure in the Swiss Alps.</p>
+            <a href="https://paragliding-interlaken.ch/">Book Now</a>
+        </div>
+        <div class="card">
+            <img th:src="@{/surfing.jpg}" alt="Surfing in Hawaii">
+            <h3>Surfing in Hawaii</h3>
+            <p>Ride the waves of the Pacific Ocean and experience the surfing paradise of Hawaii. Whether you're a beginner catching your first wave or an experienced surfer seeking the ultimate thrill, Hawaii offers some of the best surf spots in the world, surrounded by stunning tropical scenery.</p>
+            <a href="https://www.gohawaii.com/fr/experiences/adventure/surfing">Book Now</a>
+        </div>
+       
+    </div>
+</body>
+</html>
